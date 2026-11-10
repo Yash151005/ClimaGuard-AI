@@ -438,11 +438,13 @@ with tabs[0]:
         fig = px.scatter_map(
             df, lat="lat", lon="lon", color="level", color_discrete_map=LEVEL_COLORS,
             hover_name="cell", hover_data=["risk", "rain72_mm", "tmax72_c", "events_near"],
-            zoom=12, height=540, map_style="open-street-map",
+            center={"lat": lat, "lon": lon}, zoom=12, height=540, map_style="white-bg",
         )
-        fig.update_traces(marker=dict(size=26))
+        fig.update_traces(marker=dict(size=26, opacity=0.95))
         fig.update_layout(margin=dict(l=0, r=0, t=0, b=0),
-                          legend=dict(title="Alert level", bgcolor="rgba(255,255,255,.85)"))
+                          paper_bgcolor="#111111",
+                          legend=dict(title="Alert level", bgcolor="rgba(17,17,17,.9)",
+                                      font=dict(color="#f8fafc")))
         st.plotly_chart(fig, use_container_width=True)
     with c_tbl:
         st.markdown("#### Ward-level risk ranking")
