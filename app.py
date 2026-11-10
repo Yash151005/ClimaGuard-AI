@@ -438,7 +438,7 @@ with tabs[0]:
         fig = px.scatter_map(
             df, lat="lat", lon="lon", color="level", color_discrete_map=LEVEL_COLORS,
             hover_name="cell", hover_data=["risk", "rain72_mm", "tmax72_c", "events_near"],
-            zoom=12, height=540, map_style="carto-darkmatter",
+            zoom=12, height=540, map_style="open-street-map",
         )
         fig.update_traces(marker=dict(size=26))
         fig.update_layout(margin=dict(l=0, r=0, t=0, b=0),
@@ -565,7 +565,7 @@ with tabs[4]:
         st.dataframe(ev_show, hide_index=True, use_container_width=True,
                      column_config={"Source": st.column_config.LinkColumn("Source")})
         fe = px.scatter_map(events, lat="lat", lon="lon", color="category", hover_name="title",
-                            zoom=3, height=480, map_style="carto-darkmatter")
+                            zoom=3, height=480, map_style="open-street-map")
         fe.update_layout(margin=dict(l=0, r=0, t=0, b=0))
         st.plotly_chart(fe, use_container_width=True)
 
