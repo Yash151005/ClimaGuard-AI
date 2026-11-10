@@ -435,22 +435,14 @@ tabs = st.tabs(["🗺️ Ward Risk Map", "⏱️ 72-Hour Outlook", "📈 Climato
 with tabs[0]:
     c_map, c_tbl = st.columns([3, 2])
     with c_map:
-        fig = px.scatter_geo(
+        fig = px.scatter_map(
             df, lat="lat", lon="lon", color="level", color_discrete_map=LEVEL_COLORS,
             hover_name="cell", hover_data=["risk", "rain72_mm", "tmax72_c", "events_near"],
-            projection="mercator", height=540,
+            center={"lat": lat, "lon": lon}, zoom=max(12, 16 - k), height=540,
+            map_style="open-street-map",
         )
         fig.update_traces(marker=dict(size=26, opacity=0.95))
-        fig.update_geos(
-            fitbounds="locations",
-            showland=True, landcolor="#263238",
-            showocean=True, oceancolor="#101820",
-            showcountries=True, countrycolor="#607d8b",
-            showcoastlines=True, coastlinecolor="#90a4ae",
-            bgcolor="#111111",
-        )
         fig.update_layout(margin=dict(l=0, r=0, t=0, b=0),
-                          paper_bgcolor="#111111",
                           legend=dict(title="Alert level", bgcolor="rgba(17,17,17,.9)",
                                       font=dict(color="#f8fafc")))
         st.plotly_chart(fig, use_container_width=True)
