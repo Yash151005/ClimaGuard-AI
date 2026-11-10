@@ -442,8 +442,7 @@ with tabs[0]:
         )
         fig.update_traces(marker=dict(size=26, opacity=0.95))
         fig.update_geos(
-            center={"lat": lat, "lon": lon},
-            projection_scale=250,
+            fitbounds="locations",
             showland=True, landcolor="#263238",
             showocean=True, oceancolor="#101820",
             showcountries=True, countrycolor="#607d8b",
